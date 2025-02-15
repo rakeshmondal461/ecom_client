@@ -4,12 +4,10 @@ declare module "next-auth" {
   interface Session {
     user: {
       id?: number | any;
-      firstName?: string | unknown;
-      lastName?: string | unknown;
+      name?: string | unknown;
       authtoken?: string | unknown;
       access_token?: string | unknown;
       google_token?: string | unknown;
-      display_name?: string | any;
       isActive?: boolean | unknown;
       resend_token?: string | unknown;
     } & DefaultSession["user"];
@@ -17,12 +15,10 @@ declare module "next-auth" {
 
   interface User {
     id?: number;
-    firstName?: string | unknown;
-    lastName?: string | unknown;
+    name?: string | unknown;
     authtoken?: string | unknown;
     access_token?: string | unknown;
     google_token?: string | unknown;
-    display_name?: string;
     isActive?: boolean;
     resend_token?: string | unknown;
     // add other properties as needed
@@ -30,12 +26,10 @@ declare module "next-auth" {
 
   interface JWT {
     id?: number;
-    firstName?: string | unknown;
-    lastName?: string | unknown;
+    name?: string | unknown;
     authtoken?: string | unknown;
     access_token?: string | unknown;
     google_token?: string | unknown;
-    display_name?: string | unknown;
     isActive?: boolean;
     resend_token?: string | unknown;
     // add other properties as needed

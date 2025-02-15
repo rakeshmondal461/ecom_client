@@ -16,8 +16,8 @@ const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
         name: { label: "Name", type: "text" },
+        phoneNumber: { label: "Phone number", type: "text" },
         type: { label: "Type", type: "text" },
-        username: { label: "Username", type: "text" },
       },
       async authorize(credentials, req) {
         let results: any = {};
@@ -33,15 +33,12 @@ const authOptions: NextAuthOptions = {
             email: credentials?.email,
             password: credentials?.password,
             name: credentials?.name,
-            username: credentials?.username,
+            phoneNumber:credentials?.phoneNumber
           });
           results = result;
         }
 
         if (!results.success) {
-          if (results?.message.includes("Username")) {
-            throw new Error(results?.message);
-          }
           throw new Error("Something went wrong");
         }
         return { ...results.data, apiToken: results.data.access_token };
@@ -64,7 +61,7 @@ const authOptions: NextAuthOptions = {
               isActive: token.isActive,
               resend_token: token.resend_token,
               image: token.picture,
-              display_name: token.display_name,
+              name: token.name,
             };
           }
           return session;
@@ -73,6 +70,7 @@ const authOptions: NextAuthOptions = {
         if (user) {
             token.id = user.id;
             token.access_token = user?.access_token;
+            token.name = user?.name as string;
             token.email = user.email;
             token.isActive = user.isActive;
             token.image = user.image;

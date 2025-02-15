@@ -19,7 +19,7 @@ type Inputs = {
   email: string;
   password: string;
   name: string;
-  username: string;
+  phoneNumber:string;
 };
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,25 +33,13 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .trim()
-    .required("Please enter the password")
-    .matches(passwordRegex, "Weak password"),
+    .required("Please enter the password"),
   name: yup.string().trim().required("Please enter the name"),
-  username: yup
+  phoneNumber: yup
     .string()
     .trim()
-    .required("Please enter the username")
-    // First part: ensures at least one letter and one number
-    .matches(
-      /^(?=.*[a-zA-Z])(?=.*\d)/,
-      "Username must contain at least one letter and one number"
-    )
-    // Second part: allows only alphanumeric characters, underscores, and hyphens
-    .matches(
-      /^[a-zA-Z0-9_-]+$/,
-      "Username can only contain alphanumeric characters, underscores, or hyphens"
-    )
-    .min(5, "Username must be at least 5 characters long")
-    .max(50, "Username cannot be longer than 50 characters"),
+    .required("Please enter the phoneNumber"),
+
 });
 
 const SignUpSection = () => {
@@ -84,7 +72,7 @@ const SignUpSection = () => {
         email: data.email,
         password: data.password,
         name: data.name,
-        username: data.username,
+        phoneNumber:data.phoneNumber,
         type: "SIGN_UP",
         redirect: false,
       });
@@ -262,12 +250,12 @@ const SignUpSection = () => {
               <div className={cn(`w-full mt-4`)}>
                 <Controller
                   control={control}
-                  name={"username"}
+                  name={"phoneNumber"}
                   render={({ field: { value, onChange, ...field } }) => {
                     return (
                       <input
                         type="text"
-                        placeholder="Username"
+                        placeholder="Phone Number"
                         {...field}
                         onChange={onChange}
                         value={value}
@@ -278,8 +266,8 @@ const SignUpSection = () => {
                     );
                   }}
                 />
-                {errors?.username && (
-                  <>{errors.username?.message}</>
+                {errors?.phoneNumber && (
+                  <>{errors.phoneNumber?.message}</>
                 )}
               </div>
 
