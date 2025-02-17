@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import global from "@/theme/global/global.module.scss";
 import styles from "./SignInSection.module.scss";
-
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -53,13 +53,14 @@ const SignInSection = () => {
         type: "LOGIN",
         redirect: false,
       });
+      console.log("res🚀🚀🚀", res);
       if (res?.ok) {
         toast({
           title: "Success!",
           description: "Signin successful ",
         });
         // router.push("/main/home");
-        window.location.href = "/main/home";
+       window.location.href = "/";
       } else {
         toast({
           title: "Error!",
@@ -136,7 +137,9 @@ const SignInSection = () => {
                 onClick={() => {
                   setShowPassword(!showPassword);
                 }}
-              ></i>
+              >
+                {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+              </i>
             </div>
             {errors.password && <>{errors.password.message}</>}
           </div>

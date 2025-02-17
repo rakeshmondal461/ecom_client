@@ -6,7 +6,8 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { store } from "@/redux/app/store.redux";
+//import { store } from "@/redux/app/store.redux";
+/*
 
 export default function ProviderWrapper({
   children
@@ -21,3 +22,5 @@ export default function ProviderWrapper({
     </QueryClientProvider>
   );
 }
+
+*/

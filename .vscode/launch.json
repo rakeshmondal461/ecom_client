@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Next.js (Full App)",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "dev"],
+        "port": 3000,
+        "skipFiles": ["<node_internals>/**"],
+        "console": "integratedTerminal"
+      },
+      {
+        "name": "Attach to Next.js",
+        "type": "node",
+        "request": "attach",
+        "port": 3000,
+        "restart": true,
+        "skipFiles": ["<node_internals>/**"]
+      }
+    ]
+  }
+  

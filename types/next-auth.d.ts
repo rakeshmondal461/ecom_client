@@ -5,6 +5,8 @@ declare module "next-auth" {
     user: {
       id?: number | any;
       name?: string | unknown;
+      email?:string | unknown;
+      phoneNumber?:string | unknown;
       authtoken?: string | unknown;
       access_token?: string | unknown;
       google_token?: string | unknown;
@@ -14,8 +16,10 @@ declare module "next-auth" {
   }
 
   interface User {
-    id?: number;
+    _id?: string;
     name?: string | unknown;
+    email?:string | unknown;
+    phoneNumber?:string | unknown;
     authtoken?: string | unknown;
     access_token?: string | unknown;
     google_token?: string | unknown;
@@ -26,6 +30,8 @@ declare module "next-auth" {
 
   interface JWT {
     id?: number;
+    email?:string | unknown;
+    phoneNumber?:string | unknown;
     name?: string | unknown;
     authtoken?: string | unknown;
     access_token?: string | unknown;

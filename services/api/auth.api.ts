@@ -14,6 +14,7 @@ export const AuthApis = {
             data: response.data,
           };
         } catch (error: any) {
+          console.log("showing error", error)
           return {
             success: false,
             statusCode: error.status,

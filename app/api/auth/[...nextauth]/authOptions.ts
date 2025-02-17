@@ -41,7 +41,8 @@ const authOptions: NextAuthOptions = {
         if (!results.success) {
           throw new Error("Something went wrong");
         }
-        return { ...results.data, apiToken: results.data.access_token };
+        //console.log("results@@>>🚀🚀🚀🚀", results);
+        return { ...results?.data?.data, apiToken: results?.data?.data?.jwtToken };
       },
     }),
   ],
@@ -53,25 +54,29 @@ const authOptions: NextAuthOptions = {
       return baseUrl;
     },
     async session({ session, token }) {
+      console.log("token@@>>", token);
         if (token) {
             session.user = {
               id: token.id,
               access_token: token.access_token,
               email: token.email,
+              name : token?.name as string,
+              phoneNumber : token?.phoneNumber as string,
               isActive: token.isActive,
               resend_token: token.resend_token,
               image: token.picture,
-              name: token.name,
             };
           }
           return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
+      console.log("user@@>>", user);
         if (user) {
             token.id = user.id;
             token.access_token = user?.access_token;
             token.name = user?.name as string;
-            token.email = user.email;
+            token.email = user?.email as string;
+            token.phoneNumber = user?.phoneNumber as string;
             token.isActive = user.isActive;
             token.image = user.image;
           }
@@ -79,7 +84,7 @@ const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/auth/SignIn",
+    signIn: "/signin",
   },
 };
 
