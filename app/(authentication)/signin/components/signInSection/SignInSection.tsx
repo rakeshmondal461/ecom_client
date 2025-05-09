@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import styles from "./SignInSection.module.scss";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -74,10 +72,10 @@ const SignInSection = () => {
         localStorage.removeItem("enc_u");
         localStorage.removeItem("enc_p");
       }
-    } catch (e) {
+    } catch (e: any) {
       toast({
         title: "Error!",
-        description: "Invalid email or password",
+        description: e?.message || "Invalid email or password",
       });
     }
   };
